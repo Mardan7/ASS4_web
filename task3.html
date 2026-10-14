@@ -23,25 +23,44 @@
   </nav>
   <main class="container py-5">
     <h1>Task 3: Bootstrap Validation</h1>
-    <form id="task3Form" class="mt-4" novalidate>
+    <p>All fields are required. Enter a value and leave the field to see feedback: red for invalid, green for valid. Submit also checks empty fields.</p>
+    <form id="task3Form" class="mt-4 interactive-validation">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input id="name" name="name" class="form-control" required>
-        <div class="invalid-feedback">Please enter your name.</div>
+        <input id="name" name="name" type="text" class="form-control" autocomplete="name" required maxlength="50" aria-describedby="nameInvalid nameValid">
+        <div id="nameInvalid" class="invalid-feedback">Please enter your name (up to 50 characters).</div>
+        <div id="nameValid" class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input id="email" name="email" type="email" class="form-control" required>
-        <div class="invalid-feedback">Please enter a valid email address.</div>
+        <input id="email" name="email" type="email" class="form-control" autocomplete="email" required maxlength="100" placeholder="name@example.com" aria-describedby="emailInvalid emailValid">
+        <div id="emailInvalid" class="invalid-feedback">Email is required. Use a valid email address.</div>
+        <div id="emailValid" class="valid-feedback">Looks good!</div>
       </div>
       <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
-        <div class="invalid-feedback">Please enter a message.</div>
+        <textarea id="message" name="message" class="form-control" rows="4" required maxlength="500" aria-describedby="messageInvalid messageValid"></textarea>
+        <div id="messageInvalid" class="invalid-feedback">Please enter a message (up to 500 characters).</div>
+        <div id="messageValid" class="valid-feedback">Looks good!</div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <div class="alert alert-success mt-3 success-message" role="status" hidden>Form submitted successfully.</div>
     </form>
+    <details class="mt-5">
+      <summary class="h4">Bootstrap validation class examples</summary>
+      <p>Fixed examples of <code>is-valid</code> and <code>is-invalid</code>. Use the form above to test changing values.</p>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="validExample" class="form-label">Valid email example</label>
+          <input id="validExample" type="email" class="form-control is-valid" value="student@example.com" readonly aria-describedby="validExampleFeedback">
+          <div id="validExampleFeedback" class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="invalidExample" class="form-label">Invalid email example</label>
+          <input id="invalidExample" type="email" class="form-control is-invalid" value="not-an-email" readonly aria-invalid="true" aria-describedby="invalidExampleFeedback">
+          <div id="invalidExampleFeedback" class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+      </div>
+    </details>
   </main>
 </body>
 </html>

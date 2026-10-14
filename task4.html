@@ -23,52 +23,57 @@
   </nav>
   <main class="container py-5">
     <h1>Task 4: Registration Form</h1>
-    <form id="registrationForm" class="mt-4" novalidate>
+    <p>All fields except hobbies are required. Enter a value and leave the field to see feedback: red for invalid, green for valid. Submit also checks empty fields.</p>
+    <p class="text-body-secondary">Practice form only: no account is created.</p>
+    <form id="registrationForm" class="mt-4 interactive-validation">
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="firstName" class="form-label">First Name</label>
-          <input id="firstName" name="firstName" class="form-control" required>
-          <div class="invalid-feedback">Please enter your first name.</div>
-          <div class="valid-feedback">Looks good.</div>
+          <input id="firstName" name="firstName" type="text" class="form-control" autocomplete="given-name" required maxlength="50" aria-describedby="firstNameInvalid firstNameValid">
+          <div id="firstNameInvalid" class="invalid-feedback">Please enter your first name (up to 50 characters).</div>
+          <div id="firstNameValid" class="valid-feedback">Looks good!</div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="lastName" class="form-label">Last Name</label>
-          <input id="lastName" name="lastName" class="form-control" required>
-          <div class="invalid-feedback">Please enter your last name.</div>
-          <div class="valid-feedback">Looks good.</div>
+          <input id="lastName" name="lastName" type="text" class="form-control" autocomplete="family-name" required maxlength="50" aria-describedby="lastNameInvalid lastNameValid">
+          <div id="lastNameInvalid" class="invalid-feedback">Please enter your last name (up to 50 characters).</div>
+          <div id="lastNameValid" class="valid-feedback">Looks good!</div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="email" class="form-label">Email</label>
-          <input id="email" name="email" type="email" class="form-control" required>
-          <div class="invalid-feedback">Please enter a valid email address.</div>
-          <div class="valid-feedback">Looks good.</div>
+          <input id="email" name="email" type="email" class="form-control" autocomplete="email" required maxlength="100" placeholder="name@example.com" aria-describedby="emailInvalid emailValid">
+          <div id="emailInvalid" class="invalid-feedback">Please enter a valid email address.</div>
+          <div id="emailValid" class="valid-feedback">Looks good!</div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="country" class="form-label">Country</label>
-          <select id="country" name="country" class="form-select" required>
+          <select id="country" name="country" class="form-select" autocomplete="country-name" required aria-describedby="countryInvalid countryValid">
             <option value="" selected disabled>Select a country</option>
             <option value="Kazakhstan">Kazakhstan</option>
             <option value="United States">United States</option>
             <option value="United Kingdom">United Kingdom</option>
             <option value="Other">Other</option>
           </select>
-          <div class="invalid-feedback">Please select a country.</div>
-          <div class="valid-feedback">Looks good.</div>
+          <div id="countryInvalid" class="invalid-feedback">Please select a country.</div>
+          <div id="countryValid" class="valid-feedback">Looks good!</div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="password" class="form-label">Password</label>
-          <input id="password" name="password" type="password" class="form-control" minlength="8" required>
-          <div class="invalid-feedback">Enter a password with at least 8 characters.</div>
-          <div class="valid-feedback">Looks good.</div>
+          <!-- No name attribute: demo passwords must not be included in the GET URL. -->
+          <input id="password" type="password" class="form-control" autocomplete="new-password" minlength="8" maxlength="128" required aria-describedby="passwordHelp passwordInvalid passwordValid">
+          <div id="passwordHelp" class="form-text">Use 8–128 characters.</div>
+          <div id="passwordInvalid" class="invalid-feedback">Enter a password with at least 8 characters.</div>
+          <div id="passwordValid" class="valid-feedback">Password length is valid.</div>
         </div>
         <div class="col-md-6 mb-3">
           <label for="confirmPassword" class="form-label">Confirm Password</label>
-          <input id="confirmPassword" name="confirmPassword" type="password" class="form-control" required>
-          <div class="invalid-feedback">Passwords must match.</div>
-          <div class="valid-feedback">Passwords match.</div>
+          <input id="confirmPassword" type="password" class="form-control" autocomplete="new-password" minlength="8" maxlength="128" required aria-describedby="confirmHelp confirmInvalid confirmValid">
+          <div id="confirmHelp" class="form-text">Re-enter your password. This HTML/CSS demo checks length only; matching passwords requires JavaScript or server validation.</div>
+          <div id="confirmInvalid" class="invalid-feedback">Re-enter a password with at least 8 characters.</div>
+          <div id="confirmValid" class="valid-feedback">Password length is valid; please check that both passwords match.</div>
         </div>
       </div>
-      <fieldset class="mb-3">
+      <fieldset class="mb-3 gender-group" aria-describedby="genderInvalid genderValid">
         <legend class="form-label">Gender</legend>
         <div class="form-check form-check-inline">
           <input id="genderFemale" name="gender" type="radio" value="Female" class="form-check-input" required>
@@ -86,7 +91,8 @@
         <div id="genderValid" class="valid-feedback">Looks good.</div>
       </fieldset>
       <fieldset class="mb-3">
-        <legend class="form-label">Hobbies</legend>
+        <legend class="form-label">Hobbies (optional)</legend>
+        <p class="form-text">Choose any number of hobbies.</p>
         <div class="form-check form-check-inline">
           <input id="hobbyReading" name="hobbies" type="checkbox" value="Reading" class="form-check-input">
           <label for="hobbyReading" class="form-check-label">Reading</label>
@@ -102,7 +108,6 @@
       </fieldset>
       <button type="submit" class="btn btn-primary">Submit</button>
       <button type="reset" class="btn btn-secondary">Reset</button>
-      <div class="alert alert-success mt-3 success-message" role="status" hidden>Registration submitted successfully.</div>
     </form>
   </main>
 </body>

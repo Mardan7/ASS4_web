@@ -5,3 +5,30 @@ body {
 main {
   max-width: 900px;
 }
+
+.interactive-validation :is(.form-control, .form-select, input[type="radio"]):user-invalid {
+  border-color: var(--bs-form-invalid-border-color);
+}
+
+.interactive-validation :is(.form-control, .form-select, input[type="radio"]):user-valid {
+  border-color: var(--bs-form-valid-border-color);
+}
+
+.interactive-validation :is(.form-control, .form-select, input[type="radio"]):user-invalid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-danger-rgb), 0.25);
+}
+
+.interactive-validation :is(.form-control, .form-select, input[type="radio"]):user-valid:focus {
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-success-rgb), 0.25);
+}
+
+.interactive-validation input[type="radio"]:user-valid:checked {
+  background-color: var(--bs-form-valid-border-color);
+}
+
+.interactive-validation :is(.form-control, .form-select):user-invalid ~ .invalid-feedback,
+.interactive-validation :is(.form-control, .form-select):user-valid ~ .valid-feedback,
+.interactive-validation .gender-group:has(input:user-invalid) > .invalid-feedback,
+.interactive-validation .gender-group:has(input:user-valid:checked) > .valid-feedback {
+  display: block;
+}

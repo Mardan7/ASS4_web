@@ -23,21 +23,23 @@
   </nav>
   <main class="container py-5">
     <h1>Task 1: HTML5 Validation</h1>
+    <p>All fields are required. Try submitting an empty form or entering an incorrect email address.</p>
     <form class="contact-form mt-4">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <input id="name" name="name" class="form-control" required maxlength="50">
+        <input id="name" name="name" type="text" class="form-control" autocomplete="name" required maxlength="50" aria-describedby="nameHelp">
+        <div id="nameHelp" class="form-text">Maximum 50 characters.</div>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input id="email" name="email" type="email" class="form-control" required maxlength="100">
+        <input id="email" name="email" type="email" class="form-control" autocomplete="email" required maxlength="100">
       </div>
       <div class="mb-3">
         <label for="message" class="form-label">Message</label>
-        <textarea id="message" name="message" class="form-control" rows="4" required maxlength="500"></textarea>
+        <textarea id="message" name="message" class="form-control" rows="4" required maxlength="500" aria-describedby="messageHelp"></textarea>
+        <div id="messageHelp" class="form-text">Maximum 500 characters.</div>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
-      <div class="alert alert-success mt-3 success-message" role="status" hidden>Form submitted successfully.</div>
     </form>
   </main>
 </body>
